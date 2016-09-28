@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  ul
+    each obj in content
+      li
+        ul
+          li= obj.address
+          li= obj.city
+          li= obj.country
+          li= obj.location
