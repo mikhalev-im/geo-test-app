@@ -46,7 +46,9 @@ module.exports.getCoords = function(addressObj) {
       
       try {
         body = JSON.parse(body);
-        addressObj.coords = body['results'][0]['geometry']['location'];
+        const lng = body['results'][0]['geometry']['location']['lng'];
+        const lat = body['results'][0]['geometry']['location']['lat'];
+        addressObj.coords = [lng, lat];
       } catch(err) {
         defer.reject(new Error(err));
       }
