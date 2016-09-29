@@ -32,7 +32,7 @@ module.exports = function(req, res) {
       return Q.all(data);
     })
     .then(function(data) {
-      res.render('index', { title: 'Express', content: data });
+      res.render('index', { title: 'Тестовое задание', content: data });
     })
     .catch(function(err) {
       // error handling

@@ -6,3 +6,23 @@ body {
 a {
   color: #00B7FF;
 }
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #33ccff;
+  color: #fff;
+  border: 1px solid #000;
+  padding: 10px;
+}
+
+td {
+  padding: 10px;
+  border: 1px solid #000;
+}
+
+tr:nth-child(odd){
+  background-color: #eee;
+}

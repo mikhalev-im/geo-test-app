@@ -2,13 +2,11 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
-  ul
+  table
+    tr
+      th Адрес
+      th Координаты
     each obj in content
-      li
-        ul
-          li= obj.address
-          li= obj.city
-          li= obj.country
-          li= obj.coords[0]
-          li= obj.coords[1]
+      tr 
+        td #{obj.address + ', ' + obj.city + ', ' + obj.country}
+        td #{obj.coords[0] + ', ' + obj.coords[1]}
