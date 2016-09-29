@@ -8,6 +8,8 @@ if (process.env.NODE_ENV === 'production') {
   dbURI = process.env.MONGOLAB_URI;
 }
 
+mongoose.Promise = require('q').Promise;
+
 mongoose.connect(dbURI);
 
 // log events

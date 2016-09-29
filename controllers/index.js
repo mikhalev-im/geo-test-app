@@ -10,13 +10,23 @@ module.exports = function(req, res) {
 
   Q.fcall(DataCollector.getData)
     .then(function(data) {
-      data = data.map( (addr) => DataCollector.getCoords(addr) );
+      data = data.map( (obj) => Location.findOneAndUpdate(obj, obj, {
+       upsert: true,
+       new: true 
+     }) );
       return Q.all(data);
     })
-    // need to save data
-    // then check if all have coords
-    // get needed coords
-    // render data
+    .then(function(data) {
+      data = data.map( (addr) => {
+        if (!addr.coords) {
+          return DataCollector.getCoords(addr)
+                  .then( (addr) => addr.save() );
+        } else {
+          return Q(addr);
+        }
+      });
+      return Q.all(data);
+    })
     .then(function(data) {
       res.render('index', { title: 'Express', content: data });
     })
