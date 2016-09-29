@@ -9,6 +9,7 @@ a {
 
 table {
   border-collapse: collapse;
+  max-width: 100%;
 }
 
 th {
