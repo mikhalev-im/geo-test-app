@@ -10,13 +10,16 @@ module.exports = function(req, res) {
 
   Q.fcall(DataCollector.getData)
     .then(function(data) {
+      
       data = data.map( (obj) => Location.findOneAndUpdate(obj, obj, {
-       upsert: true,
-       new: true 
-     }) );
+        upsert: true,
+        new: true 
+      }) );
+      
       return Q.all(data);
     })
     .then(function(data) {
+      
       data = data.map( (addr) => {
         if (!addr.coords) {
           return DataCollector.getCoords(addr)
@@ -25,6 +28,7 @@ module.exports = function(req, res) {
           return Q(addr);
         }
       });
+      
       return Q.all(data);
     })
     .then(function(data) {
